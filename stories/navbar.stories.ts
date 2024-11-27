@@ -4,7 +4,7 @@ import '../src/components/navbar.js';
 
 export default {
   title: 'NavBar',
-  component: 'lion-navbar',
+  component: 'web-navbar',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -22,7 +22,7 @@ interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({ header, backgroundColor = 'white' }: ArgTypes) => html`
-  <lion-navbar style="--web-lion-background-color: ${backgroundColor}" .header=${header}></lion-navbar>
+  <web-navbar style="--web-lion-background-color: ${backgroundColor}" .header=${header}></web-navbar>
 `;
 
 export const App = Template.bind({});

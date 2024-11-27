@@ -30,11 +30,3 @@ export function initializeState() {
   setDemoState([]);
 
 }
-
-export function removeDemoState() {
-  try {
-    localStorage.removeItem(DEMO_STATE_KEY);
-  } catch (error) {
-    console.error('Error removing demo state:', error);
-  }
-}

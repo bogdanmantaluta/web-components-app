@@ -15,7 +15,7 @@ export default {
     chunkFileNames: '[hash].js',
     assetFileNames: '[hash][extname]',
     format: 'es',
-    dir: 'dist',
+    dir: 'docs',
   },
   preserveEntrySignatures: false,
 
@@ -24,7 +24,7 @@ export default {
     html({
       minify: true,
       injectServiceWorker: true,
-      serviceWorkerPath: 'dist/sw.js',
+      serviceWorkerPath: 'docs/sw.js',
     }),
     /** Resolve bare module imports */
     nodeResolve(),
@@ -66,8 +66,8 @@ export default {
     generateSW({
       globIgnores: ['polyfills/*.js', 'nomodule-*.js'],
       navigateFallback: '/index.html',
-      swDest: path.join('dist', 'sw.js'),
-      globDirectory: path.join('dist'),
+      swDest: path.join('docs', 'sw.js'),
+      globDirectory: path.join('docs'),
       globPatterns: ['**/*.{html,js,css,webmanifest}'],
       skipWaiting: true,
       clientsClaim: true,

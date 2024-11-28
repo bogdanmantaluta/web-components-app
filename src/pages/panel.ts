@@ -2,10 +2,27 @@ import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../components/navbar.js';
 import '../components/table.js';
+import {getDemoState} from '../utils/localStorageService.js';
 
 
 @customElement('web-panel')
 export class Panel extends LitElement {
+  items: any[] = [];
+
+  constructor() {
+    super();
+    this.loadItems();
+  }
+
+  loadItems() {
+    try {
+      this.items = getDemoState();
+      console.log(this.items)
+    } catch (error) {
+      console.error('Error loading items:', error);
+      this.items = [];
+    }
+  }
 
   static styles = css`
     :host {
@@ -22,8 +39,8 @@ export class Panel extends LitElement {
   render() {
     return html`
       <web-navbar></web-navbar>
-      <h1>All registered users</h1>
-      <web-table></web-table>
+        <h1>All registered users</h1>
+      <web-table .items="${this.items}"></web-table>
     `;
   }
 }

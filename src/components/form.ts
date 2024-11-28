@@ -3,10 +3,17 @@ import {customElement, property} from 'lit/decorators.js';
 import {LionForm} from '@lion/ui/form.js';
 import './button.js'
 import {getDemoState, setDemoState} from '../utils/localStorageService.js';
+import {loadDefaultFeedbackMessages} from '@lion/ui/validate-messages.js';
 
 @customElement('web-form')
 class Form extends LionForm {
   @property({type: String}) submitEventName = 'submit';
+
+  static get properties() {
+    return {
+      ...super.properties,
+    };
+  }
 
   static get styles() {
     return [
@@ -17,25 +24,12 @@ class Form extends LionForm {
           padding: 16px;
           z-index:2;
         }
-        .form-buttons-container {
-          margin-top:10px;
-          display: flex;
-          justify-content: space-between;
-        }
       `,
     ];
   }
 
-  render() {
-    return html`
-      <form>
-        <slot></slot>
-        <web-button href="#" @click="${this._submit}">Submit</web-button>
-      </form>
-    `;
-  }
-
-  _submit($event: any) {
+  submitHandler = ($event: any) => {
+    loadDefaultFeedbackMessages();
     $event.preventDefault();
     $event.stopPropagation();
     this.submitGroup();
@@ -62,24 +56,28 @@ class Form extends LionForm {
     } else {
       this._setFocusOnFirstErroneousFormElement(this);
     }
+  };
+
+  formatDateTime(dateTimeString: Date): string {
+    return dateTimeString.toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
   }
 
-  _reset($event: any) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.resetGroup();
-    this.dispatchEvent(new Event('reset', {bubbles: true}));
-  }
+  mockSubmit(){
 
-   formatDateTime(dateTimeString: Date): string {
-     return dateTimeString.toLocaleString('en-US', {
-       weekday: 'long',
-       year: 'numeric',
-       month: 'long',
-       day: 'numeric',
-       hour: '2-digit',
-       minute: '2-digit',
-       timeZoneName: 'short'
-     });
+  }
+  render() {
+    return html`
+      ${super.render()}
+      <web-button @click="${this.submitHandler}">Submit</web-button>
+    `;
   }
 }
+

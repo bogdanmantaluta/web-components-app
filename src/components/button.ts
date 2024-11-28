@@ -6,6 +6,12 @@ import {LionButton} from '@lion/ui/button.js';
 class Button extends LionButton {
   @property({type: String}) href = '';
 
+  static get properties() {
+    return {
+      ...super.properties,
+    };
+  }
+
   static get styles() {
     return [
       ...super.styles,
@@ -44,7 +50,7 @@ class Button extends LionButton {
   render() {
     return html`
       <div class="button-content" id="${this._buttonId}">
-        <slot></slot>
+        ${super.render()}
       </div>
     `;
   }

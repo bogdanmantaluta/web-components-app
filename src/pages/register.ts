@@ -38,15 +38,17 @@ export class Register extends LitElement {
 
   render() {
     return html`
-        <web-card id="top-card"></web-card>
-        <web-form submitEventName="navigation">
+      <web-card id="top-card"></web-card>
+      <web-form submitEventName="navigation">
+        <form>
           <h2>Register</h2>
           <web-input type="text" name="username" placeholder="Your Username" label="Username"></web-input>
           <web-input type="password" name="password" placeholder="Your Password" label="Password"></web-input>
           <web-input type="email" name="email" placeholder="Your Email" label="Email"></web-input>
           <web-input-datepicker label="Birth date" name="birthdate"></web-input-datepicker>
-        </web-form>
-        <web-card id="bottom-card"></web-card>
+      </web-form>
+      </form>
+      <web-card id="bottom-card"></web-card>
     `;
   }
 }

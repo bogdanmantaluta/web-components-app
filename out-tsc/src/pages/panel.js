@@ -13,7 +13,6 @@ let Panel = class Panel extends LitElement {
     loadItems() {
         try {
             this.items = getDemoState();
-            console.log(this.items);
         }
         catch (error) {
             console.error('Error loading items:', error);

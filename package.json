@@ -5,6 +5,7 @@
   "author": "web-lion",
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://bogdanmantaluta.github.io/web-components-app",
   "scripts": {
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
